@@ -28,6 +28,8 @@ class Instructor < Person
 
 end
 
-student_1 = Student.new("Frank")
+instructor_1 = Instructor.new("Chris")
+student_1 = Student.new("Cristina")
 
+puts instructor_1
 puts student_1
