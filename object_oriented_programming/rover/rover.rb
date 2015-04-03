@@ -1,11 +1,11 @@
 class Rover
 
-  attr_accessor :initial_x, :initial_y, :initial_direction
+  attr_accessor :x, :y, :direction
 
-  def initialize(initial_x, initial_y, initial_direction)
-    @x = initial_x
-    @y = initial_y
-    @direction = initial_direction        #We save numbers into these instance variables by using the my_rover call below
+  def initialize(x, y, direction)
+    @x = x
+    @y = y
+    @direction = direction        #We save numbers into these instance variables by using the my_rover call below
   end
 
   def read_instructions(user_input)
@@ -59,7 +59,39 @@ class Rover
     "I am at #{@x}, #{@y}, facing #{@direction}."
   end
 end
+# ----------------------------
+class Plateau
 
-rover = Rover.new(1,2,"N")
+  def initialize (length, width)
+    @length = length
+    @width = width
+    @rover_list = []      # => Going to create an array of the rover locations
+  end
 
-puts rover
+    def new_rover(x, y, direction)
+      if x > @width or x < 0 || y > @length or y < 0
+        puts "Please make sure to place the rover on the Plateau."
+      else
+        add_rover = Rover.new(x, y, direction)
+        @rover_list << add_rover        # => Shovel the new rover into the rover_list array to be accessed later
+      end
+    end
+    def move_rover
+      puts "Please enter commands to move the rover. L = turn left, R = turn right, M = move forward (syntax e.g. /'RMMMMLMLM'/)."
+      movement = gets.chomp
+      @rover_list[].read_instructions(movement)
+    end
+
+    def to_s
+    "The dimensions of the grid are: #{@width} units high by #{@length} units wide. #{@rover_list.collect{|x| x}}"
+    end
+end
+
+
+
+
+plateau = Plateau.new(9,9)
+
+plateau.new_rover(1, 1, "E")
+plateau.new_rover(2, 2, "N")
+puts plateau
