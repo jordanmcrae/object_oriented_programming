@@ -159,17 +159,17 @@ class Plateau < Rover
       puts "The first rover has been selected for movement."
       puts "Please input commands to move the rover by typing M for move forward, L for turn left, and R for turn right. (E.g. MMMRMMLM)."
       command_prompt = gets.chomp.
-      @@start_coord.read_instructions(command_prompt)
+      puts @@start_coord.read_instructions(command_prompt)    # Check this with instructors
       puts "The rover is now located at #{@@start_coord}"
     elsif rover_select == 2
         puts "The second rover has been selected for movement."
         puts "Please input commands to move the rover by typing M for move forward, L for turn left, and R for turn right. (E.g. MMMRMMLM)."
         command_prompt = gets.chomp
-        @@start_coord2.read_instructions(command_prompt)
+        puts @@start_coord2.read_instructions(command_prompt) # Check this with instructors
         puts "The rover is now located at #{@@start_coord2}"
     else
         puts "You have not selected a valid rover."
-    end
+      end
   end
 
 
