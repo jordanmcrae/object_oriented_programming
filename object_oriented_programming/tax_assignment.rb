@@ -7,17 +7,22 @@
 # =>  (np/100 rounded up to the nearest 0.05) amount of sales tax.
 
 class PriceCalculator
-  attr_accessor :item_totals
+  attr_accessor :item_totals, :item_name, :item_price
 
-  def initialize(item_name)
+  def initialize
     @item_name = item_name
     @item_price = item_price
     @item_totals = []
   end
 
+  def new_item
+    puts "What is the item name?"
+    @item_name = gets.chomp
+  end
+
   def item_price
     puts "What is the price of the item: #{@item_name}?"
-    @item_price = gets.chomp.to_f
+    @item_price = gets.chomp.to_i
   end
 
   def item_category
@@ -27,6 +32,7 @@ class PriceCalculator
     if st_eligibile == "YES"
      st_imp_price = ((@item_price * 0.10) + (@item_price * 0.05) + @item_price)
      @item_totals << st_imp_price
+     puts "The new item total is #{@item_totals}"
     elsif
       st_eligibile == "NO"
       imp_price = ((@item_price * 0.05) + @item_price)
@@ -35,20 +41,58 @@ class PriceCalculator
       puts "That is not a valid command."
     end
   end
+  def to_s
+    nil
+  end
+
+  def total_with_tax
+    @item_totals.inject(0) {|sum, i| sum+i}
+    puts "#{@item_totals}"
+  end
+
+  def sales_tax
+    puts "Sales tax: "    # => Once you figure out how to sum the total above, do this.
+  end
 end
+
+
+
+
+
 
 
 # .round(2)
 
-item_1 = PriceCalculator.new("Apple")
+new_list_1 = PriceCalculator.new
 
-puts item_1.item_category
 
-item_2 = PriceCalculator.new("Orange")
+puts new_list_1.new_item
+puts new_list_1.item_price
+puts new_list_1.item_category
 
-puts item_2.item_category
+puts new_list_1.new_item
+puts new_list_1.item_price
+puts new_list_1.item_category
 
-puts $item_totals
+puts new_list_1.new_item
+puts new_list_1.item_price
+puts new_list_1.item_category
+
+
+
+new_list_2 = PriceCalculator.new
+
+puts new_list_2.new_item
+puts new_list_2.item_price
+puts new_list_2.item_category
+
+puts new_list_2.new_item
+puts new_list_2.item_price
+puts new_list_2.item_category
+
+puts new_list_2.new_item
+puts new_list_2.item_price
+puts new_list_2.item_category
 
 
 # to figure out the tax, subtract item_price from item_category, add item_price for total without tax
